@@ -14,7 +14,7 @@ def get_url_video(lien):
     #url = 'https://mybollyfrench.com/playlist/mehndi-hai-rachne-wali/'
     base = 'https://mybollyfrench.com/playlist/'
     objet = lien.replace(base,'')
-    url_api = f'https://mybollyfrench.com/api/public/websites/v1/items/{objet}/?'
+    url_api = f'https://mybollyfrench.com/api/public/websites/v1/items/{objet}'
     r = requests.get(url_api)
     contenu = r.json()
     return contenu
