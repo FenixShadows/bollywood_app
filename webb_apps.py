@@ -23,23 +23,13 @@ def get_link(lien):
     contenu = get_url_video(lien)
     nombre_episodes = len(contenu['content_object']['medias'])
     nom_episode = contenu['content_object']['medias'][0]['name']
-    root_file = 'https://cdn.videas.fr/v-medias/'
+    nombre_episodes = len(contenu['content_object']['medias'])
     sortie = pd.DataFrame()
     j = 0
     for i in range(nombre_episodes):
-        nom_episode = contenu['content_object']['medias'][i]['name']
-        taille = 0
-        for files in contenu['content_object']['medias'][i]['files']:
-            if files['ext'] == 'mp4':
-                this_one = files['size']
-                if this_one > taille :
-                    url = files['file']
-                    url = root_file + url
-                    taille = files['size']
-                    taille_affichage = files['size']
-        sortie.at[j,'episode'] = nom_episode
-        sortie.at[j, 'Fichier'] = url
-        sortie.at[j, 'Taille'] = taille_affichage
+        sortie.at[j,'episode'] = contenu['content_object']['medias'][i]['name']
+        sortie.at[j,'Fichier'] = contenu['content_object']['medias'][i]['src']
+        sortie.at[j, 'Taille'] = contenu['content_object']['medias'][i]['duration']
         j += 1
     return sortie
 
